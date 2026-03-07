@@ -92,6 +92,8 @@ title: 我的博客
 
 # 文章列表
 
+下面是一段用于显示文章列表的 Liquid 代码：
+{% raw %}
 <ul>
   {% for post in site.posts %}
     <li>
@@ -100,6 +102,7 @@ title: 我的博客
     </li>
   {% endfor %}
 </ul>
+{% endraw %}
 ```
 
 **2.如何添加文章页的上一篇/下一篇导航**
@@ -114,6 +117,7 @@ title: 我的博客
 ---
 layout: default
 ---
+{% raw %}
 <h1>{{ page.title }}</h1>
 <p>{{ page.date | date: "%Y-%m-%d" }}</p>
 
@@ -130,6 +134,7 @@ layout: default
     <a href="{{ page.next.url | relative_url }}" style="float: right;">下一篇：{{ page.next.title }} →</a>
   {% endif %}
 </div>
+{% endraw %}
 ```
 
 ok,至此结束第一篇文章的，可能有很多考虑不全的地方，今后慢慢改进。
