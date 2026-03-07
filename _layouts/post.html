@@ -1,0 +1,19 @@
+---
+layout: default
+---
+<h1>{{ page.title }}</h1>
+<p>{{ page.date | date: "%Y-%m-%d" }}</p>
+
+<div>
+  {{ content }}
+</div>
+
+<!-- 上一篇/下一篇导航 -->
+<div style="margin-top: 2em;">
+  {% if page.previous %}
+    <a href="{{ page.previous.url | relative_url }}">← 上一篇：{{ page.previous.title }}</a>
+  {% endif %}
+  {% if page.next %}
+    <a href="{{ page.next.url | relative_url }}" style="float: right;">下一篇：{{ page.next.title }} →</a>
+  {% endif %}
+</div>
