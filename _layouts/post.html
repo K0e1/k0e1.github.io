@@ -16,4 +16,9 @@ layout: default
   {% if page.next %}
     <a href="{{ page.next.url | relative_url }}" style="float: right;">下一篇：{{ page.next.title }} →</a>
   {% endif %}
+  
+  <!-- 回到主页按钮（放在导航下方） -->
+<div style="margin-top: 1em;">
+  <a href="{{ '/' | relative_url }}">← 回到主页</a>
+</div>
 </div>
