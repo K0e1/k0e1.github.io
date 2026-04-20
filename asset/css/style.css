@@ -1,0 +1,65 @@
+/* 科技感核心样式：暗黑底色+霓虹渐变+代码风排版 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Consolas", "Monaco", monospace; /* 等宽字体，代码感 */
+}
+body {
+  background: #0a0a14; /* 深空黑底色 */
+  color: #e0e0ff; /* 浅蓝文字 */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+/* 标题霓虹渐变 */
+h1, h2 {
+  background: linear-gradient(90deg, #00f5ff, #7928ca);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-bottom: 1px solid #2d2d44;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+/* 链接 hover 霓虹效果 */
+a {
+  color: #00f5ff;
+  text-decoration: none;
+  position: relative;
+}
+a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: linear-gradient(90deg, #00f5ff, #7928ca);
+  transition: width 0.3s ease;
+}
+a:hover::after {
+  width: 100%;
+}
+/* 文章列表科技感样式 */
+ul {
+  list-style: none;
+  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+li {
+  background: rgba(20, 20, 40, 0.6);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 3px solid #00f5ff;
+  transition: transform 0.3s ease;
+}
+li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 245, 255, 0.1);
+}
+span {
+  color: #8888a8;
+  font-size: 0.9rem;
+  margin-left: 1rem;
+}

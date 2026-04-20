@@ -13,3 +13,4 @@
     </li>
   {% endfor %}
 </ul>
+<link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
