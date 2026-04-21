@@ -1,149 +1,122 @@
 ---
 ---
-/* 科技感核心样式：暗黑底色+霓虹渐变+代码风排版 */
+/* =========================================
+   1. 定义主题变量 (CSS Variables)
+========================================= */
+/* 默认：暗黑科技风 */
+:root {
+  --bg-color: #0a0a14;
+  --text-color: #e0e0ff;
+  --neon-color: #00f5ff;
+  --neon-gradient: linear-gradient(90deg, #00f5ff, #7928ca);
+  --nav-bg: rgba(20, 20, 40, 0.8);
+  --card-bg: rgba(20, 20, 40, 0.6);
+  --border-color: #2d2d44;
+  --sub-text: #8888a8;
+  --code-bg: #05050a;
+  --code-green: #00ff00;
+  --quote-bg: rgba(0, 245, 255, 0.05);
+}
+
+/* 切换：明亮科技风 (全息白昼模式) */
+[data-theme="light"] {
+  --bg-color: #f0f4f8;        /* 浅灰偏蓝底色 */
+  --text-color: #1a202c;      /* 深色文字 */
+  --neon-color: #0066ff;
+  --neon-gradient: linear-gradient(90deg, #0066ff, #9900ff);
+  --nav-bg: rgba(255, 255, 255, 0.9);
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --border-color: #cbd5e1;
+  --sub-text: #64748b;
+  --code-bg: #e2e8f0;
+  --code-green: #059669;      /* 明亮模式下的深绿色 */
+  --quote-bg: rgba(0, 102, 255, 0.05);
+}
+
+/* =========================================
+   2. 全局基础样式 (应用变量)
+========================================= */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Consolas", "Monaco", monospace; /* 等宽字体，代码感 */
+  margin: 0; padding: 0; box-sizing: border-box;
+  font-family: "Consolas", "Monaco", monospace;
 }
 body {
-  background: #0a0a14; /* 深空黑底色 */
-  color: #e0e0ff; /* 浅蓝文字 */
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
+  background: var(--bg-color);
+  color: var(--text-color);
+  max-width: 1200px; margin: 0 auto; padding: 2rem;
+  transition: background 0.3s ease, color 0.3s ease; /* 切换时的丝滑渐变过渡 */
 }
-/* 标题霓虹渐变 */
+
 h1, h2 {
-  background: linear-gradient(90deg, #00f5ff, #7928ca);
+  background: var(--neon-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  border-bottom: 1px solid #2d2d44;
-  padding-bottom: 0.5rem;
-  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem; margin-bottom: 1rem;
 }
-/* 链接 hover 霓虹效果 */
+
 a {
-  color: #00f5ff;
-  text-decoration: none;
-  position: relative;
+  color: var(--neon-color);
+  text-decoration: none; position: relative;
 }
 a::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -2px;
-  left: 0;
-  background: linear-gradient(90deg, #00f5ff, #7928ca);
+  content: ""; position: absolute; width: 0; height: 2px;
+  bottom: -2px; left: 0; background: var(--neon-gradient);
   transition: width 0.3s ease;
 }
-a:hover::after {
-  width: 100%;
-}
-/* 文章列表科技感样式 */
+a:hover::after { width: 100%; }
+
+/* =========================================
+   3. 列表与卡片样式
+========================================= */
 ul {
-  list-style: none;
-  gap: 1rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  list-style: none; gap: 1rem;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 li {
-  background: rgba(20, 20, 40, 0.6);
-  padding: 1.5rem;
-  border-radius: 8px;
-  border-left: 3px solid #00f5ff;
-  transition: transform 0.3s ease;
+  background: var(--card-bg);
+  padding: 1.5rem; border-radius: 8px;
+  border-left: 3px solid var(--neon-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 li:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 245, 255, 0.1);
 }
 span {
-  color: #8888a8;
-  font-size: 0.9rem;
-  margin-left: 1rem;
-  
-  
-/* --- Markdown 文章正文专属样式 --- */
-.post-content p {
-  margin-bottom: 1.2rem;
-  color: #c0c0e0;
+  color: var(--sub-text); font-size: 0.9rem; margin-left: 1rem;
 }
 
-/* 1. 修复文章内的列表冲突，覆盖全局的 grid 和卡片效果 */
+/* =========================================
+   4. Markdown 文章正文专属样式补丁
+========================================= */
+.post-content p { margin-bottom: 1.2rem; color: var(--text-color); }
 .post-content ul, .post-content ol {
-  display: block; 
-  margin-left: 2rem;
-  margin-bottom: 1.5rem;
-  list-style-type: square; /* 方块列表更有科技感 */
+  display: block; margin-left: 2rem; margin-bottom: 1.5rem; list-style-type: square;
 }
 .post-content li {
-  background: transparent;
-  padding: 0.2rem;
-  border: none; /* 移除霓虹左边框 */
-  border-radius: 0;
+  background: transparent; padding: 0.2rem; border: none; border-radius: 0;
 }
-.post-content li:hover {
-  transform: none; /* 文章内列表不需要悬浮动画 */
-  box-shadow: none;
-}
-
-/* 2. 引用块 (Blockquote) */
+.post-content li:hover { transform: none; box-shadow: none; }
 .post-content blockquote {
-  border-left: 4px solid #00f5ff;
-  background: rgba(0, 245, 255, 0.05);
-  padding: 1rem 1.5rem;
-  margin-bottom: 1.5rem;
-  font-style: italic;
-  color: #8888a8;
+  border-left: 4px solid var(--neon-color);
+  background: var(--quote-bg);
+  padding: 1rem 1.5rem; margin-bottom: 1.5rem; font-style: italic; color: var(--sub-text);
 }
-
-/* 3. 代码块 (终端绿效果) */
 .post-content pre {
-  background: #05050a; /* 极黑底色 */
-  border: 1px solid #2d2d44;
-  border-radius: 6px;
-  padding: 1rem;
-  overflow-x: auto;
-  margin-bottom: 1.5rem;
+  background: var(--code-bg); border: 1px solid var(--border-color);
+  border-radius: 6px; padding: 1rem; overflow-x: auto; margin-bottom: 1.5rem;
 }
-/* 多行代码字体 */
-.post-content pre code {
-  color: #00ff00; /* 经典的终端荧光绿 */
-  background: transparent;
-  padding: 0;
-}
-/* 行内短代码 (例如 `npm install`) */
+.post-content pre code { color: var(--code-green); background: transparent; padding: 0; }
 .post-content code {
-  background: rgba(121, 40, 202, 0.3); /* 紫色高亮 */
-  color: #e0e0ff;
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
+  background: var(--quote-bg); color: var(--neon-color);
+  padding: 0.2rem 0.4rem; border-radius: 4px;
 }
-
-/* 4. 表格样式 */
-.post-content table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 1.5rem;
-}
+.post-content table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
 .post-content th, .post-content td {
-  border: 1px solid #2d2d44;
-  padding: 0.8rem;
-  text-align: left;
+  border: 1px solid var(--border-color); padding: 0.8rem; text-align: left;
 }
-.post-content th {
-  background: rgba(121, 40, 202, 0.1);
-  color: #00f5ff;
-}
-
-/* 5. 分割线 */
+.post-content th { background: var(--quote-bg); color: var(--neon-color); }
 .post-content hr {
-  border: none;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #00f5ff, transparent);
-  margin: 2.5rem 0;
-}
+  border: none; height: 1px; background: var(--neon-gradient); margin: 2.5rem 0;
 }

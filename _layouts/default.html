@@ -1,21 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <title>{{ page.title }} | {{ site.title }}</title>
-  <link rel="stylesheet" href="{{ "/assets/css/cyber.css" | relative_url }}?v=2">
+  <link rel="stylesheet" href="{{ "/assets/css/cyber.css" | relative_url }}?v=3">
 </head>
 <body>
-  <!-- 导航栏：主页 + 归档 -->
-  <nav style="margin-bottom: 2rem; padding: 1rem; background: rgba(20,20,40,0.8); border-radius: 8px;">
-    <a href="{{ "/" | relative_url }}" style="margin-right: 2rem;">主页</a>
-    <a href="{{ "/archive.html" | relative_url }}">归档</a>
+  <nav style="margin-bottom: 2rem; padding: 1rem; background: var(--nav-bg); border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+    <div>
+      <a href="{{ "/" | relative_url }}" style="margin-right: 2rem;">主页</a>
+      <a href="{{ "/archive.html" | relative_url }}">归档</a>
+    </div>
+    <button id="theme-toggle" style="background: transparent; border: 1px solid var(--neon-color); color: var(--neon-color); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; font-family: inherit; transition: all 0.3s ease;">
+      🌓 切换协议
+    </button>
   </nav>
+
   <main>
     {{ content }}
   </main>
-  <footer style="margin-top: 3rem; text-align: center; color: #8888a8;">
+
+  <footer style="margin-top: 3rem; text-align: center; color: var(--sub-text);">
     <p>&copy; {{ site.time | date: "%Y" }} {{ site.author }} | 我的博客</p>
   </footer>
+
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+
+    // 1. 页面加载时，检查本地存储是否有用户之前选择的主题
+    const savedTheme = localStorage.getItem('blog-theme');
+    if (savedTheme === 'light') {
+      htmlElement.setAttribute('data-theme', 'light');
+    }
+
+    // 2. 监听按钮点击事件
+    themeToggleBtn.addEventListener('click', () => {
+      // 检查当前是什么主题
+      const currentTheme = htmlElement.getAttribute('data-theme');
+      
+      if (currentTheme === 'light') {
+        // 如果当前是明亮，就切换回默认的暗黑，并移除属性
+        htmlElement.removeAttribute('data-theme');
+        localStorage.setItem('blog-theme', 'dark');
+      } else {
+        // 如果当前是暗黑（无属性），就切换为明亮
+        htmlElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('blog-theme', 'light');
+      }
+    });
+  </script>
 </body>
 </html>
