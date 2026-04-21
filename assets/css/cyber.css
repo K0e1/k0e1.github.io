@@ -64,4 +64,86 @@ span {
   color: #8888a8;
   font-size: 0.9rem;
   margin-left: 1rem;
+  
+  
+/* --- Markdown 文章正文专属样式 --- */
+.post-content p {
+  margin-bottom: 1.2rem;
+  color: #c0c0e0;
+}
+
+/* 1. 修复文章内的列表冲突，覆盖全局的 grid 和卡片效果 */
+.post-content ul, .post-content ol {
+  display: block; 
+  margin-left: 2rem;
+  margin-bottom: 1.5rem;
+  list-style-type: square; /* 方块列表更有科技感 */
+}
+.post-content li {
+  background: transparent;
+  padding: 0.2rem;
+  border: none; /* 移除霓虹左边框 */
+  border-radius: 0;
+}
+.post-content li:hover {
+  transform: none; /* 文章内列表不需要悬浮动画 */
+  box-shadow: none;
+}
+
+/* 2. 引用块 (Blockquote) */
+.post-content blockquote {
+  border-left: 4px solid #00f5ff;
+  background: rgba(0, 245, 255, 0.05);
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  color: #8888a8;
+}
+
+/* 3. 代码块 (终端绿效果) */
+.post-content pre {
+  background: #05050a; /* 极黑底色 */
+  border: 1px solid #2d2d44;
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+/* 多行代码字体 */
+.post-content pre code {
+  color: #00ff00; /* 经典的终端荧光绿 */
+  background: transparent;
+  padding: 0;
+}
+/* 行内短代码 (例如 `npm install`) */
+.post-content code {
+  background: rgba(121, 40, 202, 0.3); /* 紫色高亮 */
+  color: #e0e0ff;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+/* 4. 表格样式 */
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+.post-content th, .post-content td {
+  border: 1px solid #2d2d44;
+  padding: 0.8rem;
+  text-align: left;
+}
+.post-content th {
+  background: rgba(121, 40, 202, 0.1);
+  color: #00f5ff;
+}
+
+/* 5. 分割线 */
+.post-content hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00f5ff, transparent);
+  margin: 2.5rem 0;
+}
 }
