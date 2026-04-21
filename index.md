@@ -1,3 +1,8 @@
+---
+layout: default
+title: 主页
+---
+
 # k0e1.github.io
 
 ## 这是主页

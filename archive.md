@@ -2,7 +2,7 @@
 layout: default # 先创建 _layouts/default.html 基础布局
 title: 文章归档
 ---
-<link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
+
 
 # 文章归档
 <div class="archive-container">
