@@ -1,5 +1,5 @@
 title: My Blog
-theme: jekyll-theme-hacker 
+# theme: jekyll-theme-hacker 
 description: 技术博客 | 代码/工具/教程
 author: k0e1
 timezone: Asia/Shanghai
