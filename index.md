@@ -3,12 +3,7 @@ layout: default
 title: 主页
 ---
 
-# k0e1.github.io
-
-## 这是主页
-
-<!-- 新增归档链接 -->
-<p><a href="{{ "/archive.html" | relative_url }}" style="font-size: 1.1rem;">📁 文章归档</a></p>
+# 我的主页
 
 # 文章列表
 <ul>
