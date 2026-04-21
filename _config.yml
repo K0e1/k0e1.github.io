@@ -1,4 +1,8 @@
 title: My Blog
-theme: jekyll-theme-cayman
-
-
+# 替换为更具科技感的内置主题（或注释掉theme，改用自定义CSS）
+theme: jekyll-theme-hacker （黑客风，代码感强）
+# theme: null # 关闭默认主题，自定义样式
+# 基础配置补充
+description: 技术博客 | 代码/工具/教程
+author: k0e1
+timezone: Asia/Shanghai
