@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
+</head>
+<body>
+  <!-- 导航栏：主页 + 归档 -->
+  <nav style="margin-bottom: 2rem; padding: 1rem; background: rgba(20,20,40,0.8); border-radius: 8px;">
+    <a href="{{ "/" | relative_url }}" style="margin-right: 2rem;">主页</a>
+    <a href="{{ "/archive.html" | relative_url }}">归档</a>
+  </nav>
+  <main>
+    {{ content }}
+  </main>
+  <footer style="margin-top: 3rem; text-align: center; color: #8888a8;">
+    <p>&copy; {{ site.time | date: "%Y" }} {{ site.author }} | 科技感博客</p>
+  </footer>
+</body>
+</html>

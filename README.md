@@ -1,8 +1,9 @@
 # k0e1.github.io
 
-
 ## 这是主页
 
+<!-- 新增归档链接 -->
+<p><a href="{{ "/archive.html" | relative_url }}" style="font-size: 1.1rem;">📁 文章归档</a></p>
 
 # 文章列表
 <ul>
@@ -13,4 +14,3 @@
     </li>
   {% endfor %}
 </ul>
-<link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
