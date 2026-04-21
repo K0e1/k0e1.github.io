@@ -125,3 +125,20 @@ span {
 .post-content hr {
   border: none; height: 1px; background: var(--neon-gradient); margin: 2.5rem 0;
 }
+/* =========================================
+   5. 粒子特效背景容器与层级保护
+========================================= */
+#particles-js {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1; /* 沉入最底层的深渊 */
+}
+
+/* 保护页面主要内容，确保它们悬浮在粒子之上且可以被点击 */
+nav, main, footer {
+  position: relative;
+  z-index: 1;
+}

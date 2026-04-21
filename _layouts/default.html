@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>{{ page.title }} | {{ site.title }}</title>
-  <link rel="stylesheet" href="{{ "/assets/css/cyber.css" | relative_url }}?v=3">
+  <link rel="stylesheet" href="{{ "/assets/css/cyber.css" | relative_url }}?v=5">
 </head>
 <body>
+  <div id="particles-js"></div>
+
   <nav style="margin-bottom: 2rem; padding: 1rem; background: var(--nav-bg); border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
     <div>
       <a href="{{ "/" | relative_url }}" style="margin-right: 2rem;">主页</a>
@@ -24,30 +26,70 @@
     <p>&copy; {{ site.time | date: "%Y" }} {{ site.author }} | 我的博客</p>
   </footer>
 
+  <script src="{{ "/assets/js/particles.min.js" | relative_url }}"></script>
+  
   <script>
     const themeToggleBtn = document.getElementById('theme-toggle');
     const htmlElement = document.documentElement;
 
-    // 1. 页面加载时，检查本地存储是否有用户之前选择的主题
-    const savedTheme = localStorage.getItem('blog-theme');
+    // 封装一个函数：根据不同主题加载不同颜色的粒子
+    function loadParticles(theme) {
+      const isLight = theme === 'light';
+      const pColor = isLight ? '#0066ff' : '#00f5ff'; // 明亮用深蓝，暗黑用霓虹青
+      const pOpacity = isLight ? 0.3 : 0.4;
+
+      particlesJS("particles-js", {
+        "particles": {
+          "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+          "color": { "value": pColor },
+          "shape": { "type": "circle" },
+          "opacity": { "value": pOpacity, "random": false },
+          "size": { "value": 3, "random": true },
+          "line_linked": {
+            "enable": true, "distance": 150, "color": pColor,
+            "opacity": pOpacity, "width": 1
+          },
+          "move": { "enable": true, "speed": 1.5, "direction": "none", "random": true, "out_mode": "out" }
+        },
+        "interactivity": {
+          "detect_on": "canvas",
+          "events": {
+            "onhover": { "enable": true, "mode": "grab" }, // 鼠标悬浮抓取连线
+            "onclick": { "enable": true, "mode": "push" }, // 鼠标点击爆发新粒子
+            "resize": true
+          },
+          "modes": {
+            "grab": { "distance": 180, "line_linked": { "opacity": 0.8 } },
+            "push": { "particles_nb": 3 }
+          }
+        },
+        "retina_detect": true
+      });
+    }
+
+    // 1. 页面加载时：检测本地主题，并启动对应粒子
+    const savedTheme = localStorage.getItem('blog-theme') || 'dark';
     if (savedTheme === 'light') {
       htmlElement.setAttribute('data-theme', 'light');
     }
+    loadParticles(savedTheme);
 
-    // 2. 监听按钮点击事件
+    // 2. 点击按钮时：切换主题并重绘粒子
     themeToggleBtn.addEventListener('click', () => {
-      // 检查当前是什么主题
       const currentTheme = htmlElement.getAttribute('data-theme');
-      
+      let newTheme = 'dark';
+
       if (currentTheme === 'light') {
-        // 如果当前是明亮，就切换回默认的暗黑，并移除属性
         htmlElement.removeAttribute('data-theme');
         localStorage.setItem('blog-theme', 'dark');
       } else {
-        // 如果当前是暗黑（无属性），就切换为明亮
         htmlElement.setAttribute('data-theme', 'light');
         localStorage.setItem('blog-theme', 'light');
+        newTheme = 'light';
       }
+      
+      // 销毁旧粒子并加载新颜色粒子
+      loadParticles(newTheme);
     });
   </script>
 </body>
