@@ -2,7 +2,7 @@
 layout: post
 title: "如何在github上搭建个人博客(Jekyll)"
 date: 2026-03-07
-categories: [学习]
+categories: [java]
 tags: [git, markdown]
 ---
 
