@@ -38,7 +38,8 @@
 ========================================= */
 * {
   margin: 0; padding: 0; box-sizing: border-box;
-  font-family: "Consolas", "Monaco", monospace;
+  /* 英文使用等宽代码字体，中文回退到现代无衬线系统字体 */
+  font-family: "Consolas", "Monaco", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
 }
 body {
   background: var(--bg-color);
@@ -53,11 +54,15 @@ h1, h2 {
   -webkit-text-fill-color: transparent;
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 0.5rem; margin-bottom: 1rem;
+  font-weight: 800; 
+  letter-spacing: 2px;
 }
 
 a {
   color: var(--neon-color);
   text-decoration: none; position: relative;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 a::after {
   content: ""; position: absolute; width: 0; height: 2px;
