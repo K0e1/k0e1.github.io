@@ -8,19 +8,18 @@
 <body>
   <div id="particles-js"></div>
 
-  <nav style="margin-bottom: 2rem; padding: 1rem; background: var(--nav-bg); border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
-    <div>
-      <a href="{{ "/" | relative_url }}" style="margin-right: 2rem;">主页</a>
-	  
-	  <a href="{{ "/category/人工智能/" | relative_url }}">人工智能/</a>
-      <a href="{{ "/category/网络安全/" | relative_url }}">网络安全</a>
-	  <a href="{{ "/category/小记/" | relative_url }}">小记</a>
-      <a href="{{ "/archive.html" | relative_url }}">归档</a>
+ <nav style="margin-bottom: 2rem; padding: 1rem 1.5rem; background: var(--nav-bg); border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+    <div style="display: flex; gap: 2.5rem; align-items: center;">
+        <a href="{{ "/" | relative_url }}" style="font-weight: 600;">主页</a>
+        <a href="{{ "/category/人工智能/" | relative_url }}">人工智能</a>
+        <a href="{{ "/category/网络安全/" | relative_url }}">网络安全</a>
+        <a href="{{ "/category/小记/" | relative_url }}">小记</a>
+        <a href="{{ "/archive.html" | relative_url }}">归档</a>
     </div>
-    <button id="theme-toggle" style="background: transparent; border: 1px solid var(--neon-color); color: var(--neon-color); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; font-family: inherit; transition: all 0.3s ease;">
-      🌓 切换背景
+    <button id="theme-toggle" style="background: transparent; border: 1px solid var(--neon-color); color: var(--neon-color); padding: 0.5rem 1.2rem; border-radius: 4px; cursor: pointer; font-family: inherit; transition: all 0.3s ease; white-space: nowrap;">
+        🌓 切换背景
     </button>
-  </nav>
+</nav>
 
   <main>
     {{ content }}
