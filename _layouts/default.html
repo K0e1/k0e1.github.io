@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>{{ page.title }} | {{ site.title }}</title>
-  <link rel="stylesheet" href="{{ "/assets/css/cyber.css" | relative_url }}?v=5">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ "/assets/css/cyber.css" | relative_url }}?v=6">
 </head>
 <body>
   <div id="particles-js"></div>
@@ -93,6 +96,24 @@
       
       // 销毁旧粒子并加载新颜色粒子
       loadParticles(newTheme);
+    });
+  </script>
+
+  <script>
+    // 代码块复制按钮
+    document.querySelectorAll('.post-content pre').forEach(block => {
+      const copyBtn = document.createElement('button');
+      copyBtn.className = 'copy-btn';
+      copyBtn.textContent = '复制';
+      copyBtn.addEventListener('click', () => {
+        const code = block.querySelector('code');
+        const text = code ? code.innerText : block.innerText;
+        navigator.clipboard.writeText(text).then(() => {
+          copyBtn.textContent = '已复制';
+          setTimeout(() => { copyBtn.textContent = '复制'; }, 1200);
+        });
+      });
+      block.appendChild(copyBtn);
     });
   </script>
 </body>
