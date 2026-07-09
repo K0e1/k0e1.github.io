@@ -108,14 +108,35 @@ span {
   background: var(--quote-bg);
   padding: 1rem 1.5rem; margin-bottom: 1.5rem; font-style: italic; color: var(--sub-text);
 }
+/* ---- 紧凑代码块样式 ---- */
 .post-content pre {
-  background: var(--code-bg); border: 1px solid var(--border-color);
-  border-radius: 6px; padding: 1rem; overflow-x: auto; margin-bottom: 1.5rem;
+  position: relative;
+  background: var(--code-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  margin: 1rem 0 1.5rem;
+  padding: 0.8rem 1rem;
+  overflow-x: auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  letter-spacing: -0.4px;
 }
-.post-content pre code { color: var(--code-green); background: transparent; padding: 0; }
+.post-content pre code {
+  font-family: "JetBrains Mono", Menlo, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: -0.3px;
+  color: var(--code-green);
+  background: transparent;
+  padding: 0;
+}
 .post-content code {
-  background: var(--quote-bg); color: var(--neon-color);
-  padding: 0.2rem 0.4rem; border-radius: 4px;
+  font-family: "JetBrains Mono", Consolas, monospace;
+  letter-spacing: -0.3px;
+  padding: 0.1rem 0.35rem;
+  background: var(--quote-bg);
+  color: var(--neon-color);
+  border-radius: 4px;
+  font-size: 0.88em;
 }
 .post-content table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
 .post-content th, .post-content td {
@@ -141,4 +162,38 @@ span {
 nav, main, footer {
   position: relative;
   z-index: 1;
+}
+
+/* =========================================
+   6. 代码块复制按钮
+========================================= */
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-family: "JetBrains Mono", Consolas, monospace;
+  color: #888;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, color 0.2s ease, background 0.2s ease;
+  z-index: 2;
+}
+.post-content pre:hover .copy-btn { opacity: 1; }
+.copy-btn:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.14);
+}
+[data-theme="light"] .copy-btn {
+  color: #666;
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.1);
+}
+[data-theme="light"] .copy-btn:hover {
+  color: #111;
+  background: rgba(0,0,0,0.08);
 }
